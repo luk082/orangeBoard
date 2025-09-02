@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: white;
+            color: black;
+            line-height: 1.6;
+        }
+        
+        .header {
+            border-bottom: 2px solid black;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .post-form {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            padding: 20px;
+            border: 2px solid black;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid black;
+            background: white;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #333;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: black;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        
+        .submit-btn:hover {
+            background: #333;
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .posts-container {
+            padding: 0 20px;
+            columns: 300px;
+            column-gap: 20px;
+        }
+        
+        .post {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 2px solid black;
+            background: white;
+        }
+        
+        .post-header {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid black;
+        }
+        
+        .post-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .post-meta {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .post-content {
+            word-wrap: break-word;
+        }
+        
+        .post-content h1 {
+            font-size: 1.5rem;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .post-content h2 {
+            font-size: 1.3rem;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .post-content h3 {
+            font-size: 1.1rem;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .post-content h4, .post-content h5, .post-content h6 {
+            font-size: 1rem;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .post-content p {
+            margin-bottom: 10px;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .post-content li {
+            margin-bottom: 5px;
+        }
+        
+        .post-content a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .post-content a:hover {
+            color: #333;
+        }
+        
+        .post-content strong {
+            font-weight: 700;
+        }
+        
+        .post-content em {
+            font-style: italic;
+        }
+        
+        .post-content code {
+            background: #f0f0f0;
+            padding: 2px 4px;
+            border: 1px solid #ccc;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .post-content pre {
+            background: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            overflow-x: auto;
+            margin-bottom: 10px;
+        }
+        
+        .post-content pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid black;
+            padding-left: 15px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .post-content hr {
+            border: none;
+            border-top: 2px solid black;
+            margin: 15px 0;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .error {
+            color: #d00;
+            margin-top: 10px;
+        }
+        
+
+        @media (max-width: 768px) {
+            .posts-container {
+                columns: 1;
+            }
+            
+            .post-form {
+                margin: 0 20px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Board</h1>
+    </header>
+    
+    <main>
+        <form class="post-form" id="postForm">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required maxlength="100">
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username (optional)</label>
+                <input type="text" id="username" name="username" placeholder="Anonymous" maxlength="50">
+            </div>
+            
+            <div class="form-group">
+                <label for="content">Content (Markdown supported, 500 words max)</label>
+                <textarea id="content" name="content" required placeholder="Write your post in markdown...
+
+**Bold text**
+*Italic text*
+`code`
+[Link](https://example.com)
+
+# Header 1
+## Header 2
+
+- List item
+- Another item
+
+> Blockquote
+
+```
+Code block
+```"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">Post</button>
+            <div class="error" id="error"></div>
+        </form>
+        
+        <div class="loading" id="loading" style="display: none;">Loading posts...</div>
+        <div class="posts-container" id="postsContainer"></div>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <script>
+        let posts = [];
+        let apiBaseUrl = '';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set API URL to your Worker
+            apiBaseUrl = 'https://board.thanos.workers.dev';
+            loadPosts();
+            document.getElementById('postForm').addEventListener('submit', handleSubmit);
+        });
+
+        
+        // Load all posts
+        async function loadPosts() {
+            if (!apiBaseUrl) return;
+            
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('loading').textContent = 'Loading posts...';
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/posts`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                posts = await response.json();
+                renderPosts();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                document.getElementById('loading').textContent = `Error loading posts: ${error.message}`;
+                document.getElementById('loading').style.color = '#d00';
+            }
+        }
+        
+        // Render posts in staggered columns
+        function renderPosts() {
+            const container = document.getElementById('postsContainer');
+            container.innerHTML = '';
+            
+            if (posts.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">No posts yet. Be the first to post!</div>';
+                return;
+            }
+            
+            posts.forEach(post => {
+                const postElement = createPostElement(post);
+                container.appendChild(postElement);
+            });
+        }
+        
+        // Create individual post element
+        function createPostElement(post) {
+            const div = document.createElement('div');
+            div.className = 'post';
+            
+            const date = new Date(post.timestamp).toLocaleString();
+            const contentHtml = marked.parse(post.content);
+            
+            div.innerHTML = `
+                <div class="post-header">
+                    <div class="post-title">${escapeHtml(post.title)}</div>
+                    <div class="post-meta">by ${escapeHtml(post.username)} • ${date}</div>
+                </div>
+                <div class="post-content">${contentHtml}</div>
+            `;
+            
+            return div;
+        }
+        
+        // Handle form submission
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const errorDiv = document.getElementById('error');
+            
+            // Clear previous error
+            errorDiv.textContent = '';
+            
+            // Get form data
+            const title = document.getElementById('title').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const content = document.getElementById('content').value.trim();
+            
+            if (!title || !content) {
+                errorDiv.textContent = 'Title and content are required';
+                return;
+            }
+            
+            // Check word count
+            const wordCount = content.split(/\s+/).length;
+            if (wordCount > 500) {
+                errorDiv.textContent = `Content is ${wordCount} words. Maximum is 500 words.`;
+                return;
+            }
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Posting...';
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/posts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title,
+                        username: username || 'Anonymous',
+                        content
+                    })
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const newPost = await response.json();
+                
+                // Add new post to the beginning of the array
+                posts.unshift(newPost);
+                renderPosts();
+                
+                // Reset form
+                document.getElementById('postForm').reset();
+                
+                // Scroll to top to see new post
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error creating post:', error);
+                errorDiv.textContent = `Error: ${error.message}`;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Post';
+            }
+        }
+        
+        // Utility function to escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+    </script>
+</body>
+</html>
