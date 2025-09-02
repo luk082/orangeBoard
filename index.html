@@ -603,19 +603,23 @@ Code block
                 
                 const data = await response.json();
                 
+                // Handle both old and new API response formats
+                const postsArray = Array.isArray(data) ? data : (data.posts || []);
+                const hasMoreData = data.hasMore !== undefined ? data.hasMore : false;
+                
                 if (isRefresh) {
                     // Check for new posts
-                    const newPosts = data.posts.filter(post => 
+                    const newPosts = postsArray.filter(post => 
                         !posts.some(existing => existing.id === post.id)
                     );
                     
                     if (newPosts.length > 0) {
-                        posts = data.posts;
+                        posts = postsArray;
                         renderPosts();
                     }
                 } else {
-                    posts = currentOffset === 0 ? data.posts : [...posts, ...data.posts];
-                    hasMore = data.hasMore;
+                    posts = currentOffset === 0 ? postsArray : [...posts, ...postsArray];
+                    hasMore = hasMoreData;
                     renderPosts();
                     updateLoadMoreButton();
                 }
