@@ -11,17 +11,51 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --bg-color: white;
+            --text-color: black;
+            --border-color: black;
+            --secondary-text: #666;
+            --hover-bg: #f5f5f5;
+            --button-bg: black;
+            --button-text: white;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: white;
+            --border-color: #444;
+            --secondary-text: #aaa;
+            --hover-bg: #333;
+            --button-bg: white;
+            --button-text: black;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: white;
-            color: black;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
         
         .header {
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid var(--border-color);
             padding: 20px;
             margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .header h1 {
@@ -29,11 +63,40 @@
             font-weight: 700;
         }
         
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            padding: 8px 12px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: inherit;
+            min-width: 200px;
+        }
+        
+        .theme-toggle {
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: 2px solid var(--border-color);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .theme-toggle:hover {
+            background: var(--hover-bg);
+        }
+        
         .post-form {
             max-width: 600px;
             margin: 0 auto 40px;
             padding: 20px;
-            border: 2px solid black;
+            border: 2px solid var(--border-color);
         }
         
         .form-group {
@@ -49,15 +112,16 @@
         input[type="text"], textarea {
             width: 100%;
             padding: 10px;
-            border: 2px solid black;
-            background: white;
+            border: 2px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
             font-family: inherit;
             font-size: 14px;
         }
         
         input[type="text"]:focus, textarea:focus {
             outline: none;
-            border-color: #333;
+            border-color: var(--secondary-text);
         }
         
         textarea {
@@ -65,24 +129,37 @@
             resize: vertical;
         }
         
+        .tags-input {
+            font-size: 12px;
+            color: var(--secondary-text);
+        }
+        
         .submit-btn {
-            background: black;
-            color: white;
+            background: var(--button-bg);
+            color: var(--button-text);
             padding: 12px 24px;
-            border: none;
+            border: 2px solid var(--border-color);
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
-            transition: background-color 0.2s;
         }
         
-        .submit-btn:hover {
-            background: #333;
+        .submit-btn:hover:not(:disabled) {
+            background: var(--hover-bg);
         }
         
         .submit-btn:disabled {
-            background: #ccc;
+            opacity: 0.5;
             cursor: not-allowed;
+        }
+        
+        .image-upload {
+            margin-top: 10px;
+        }
+        
+        .image-upload input[type="file"] {
+            border: none;
+            padding: 5px 0;
         }
         
         .posts-container {
@@ -95,14 +172,14 @@
             break-inside: avoid;
             margin-bottom: 20px;
             padding: 20px;
-            border: 2px solid black;
-            background: white;
+            border: 2px solid var(--border-color);
+            background: var(--bg-color);
         }
         
         .post-header {
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid var(--border-color);
         }
         
         .post-title {
@@ -113,11 +190,32 @@
         
         .post-meta {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--secondary-text);
+            margin-bottom: 5px;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .tag {
+            background: var(--hover-bg);
+            border: 1px solid var(--border-color);
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        
+        .tag:hover {
+            background: var(--secondary-text);
+            color: var(--bg-color);
         }
         
         .post-content {
             word-wrap: break-word;
+            margin-bottom: 15px;
         }
         
         .post-content h1 {
@@ -158,12 +256,12 @@
         }
         
         .post-content a {
-            color: black;
+            color: var(--text-color);
             text-decoration: underline;
         }
         
         .post-content a:hover {
-            color: #333;
+            color: var(--secondary-text);
         }
         
         .post-content strong {
@@ -175,17 +273,17 @@
         }
         
         .post-content code {
-            background: #f0f0f0;
+            background: var(--hover-bg);
             padding: 2px 4px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
         }
         
         .post-content pre {
-            background: #f0f0f0;
+            background: var(--hover-bg);
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
             overflow-x: auto;
             margin-bottom: 10px;
         }
@@ -197,7 +295,7 @@
         }
         
         .post-content blockquote {
-            border-left: 4px solid black;
+            border-left: 4px solid var(--border-color);
             padding-left: 15px;
             margin: 10px 0;
             font-style: italic;
@@ -205,8 +303,112 @@
         
         .post-content hr {
             border: none;
-            border-top: 2px solid black;
+            border-top: 2px solid var(--border-color);
             margin: 15px 0;
+        }
+        
+        .post-images {
+            margin: 10px 0;
+        }
+        
+        .post-images img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            margin-bottom: 5px;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+        
+        .action-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .action-btn:hover {
+            background: var(--hover-bg);
+        }
+        
+        .replies {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+        
+        .reply {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-left: 3px solid var(--border-color);
+            background: var(--hover-bg);
+        }
+        
+        .reply-header {
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .reply-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .reply-form {
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .reply-form.active {
+            display: block;
+        }
+        
+        .reply-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin-bottom: 10px;
+            min-height: 60px;
+        }
+        
+        .filters {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            background: var(--hover-bg);
+        }
+        
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .filter-tag {
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
         }
         
         .loading {
@@ -220,7 +422,20 @@
             margin-top: 10px;
         }
         
-
+        .load-more {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .load-more button {
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: 2px solid var(--border-color);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
         @media (max-width: 768px) {
             .posts-container {
                 columns: 1;
@@ -229,15 +444,40 @@
             .post-form {
                 margin: 0 20px 40px;
             }
+            
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .header-controls {
+                justify-content: space-between;
+            }
+            
+            .search-box {
+                min-width: 150px;
+                flex: 1;
+            }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <h1>Board</h1>
+        <div class="header-content">
+            <h1>orangeBoard</h1>
+            <div class="header-controls">
+                <input type="text" id="searchBox" class="search-box" placeholder="Search posts...">
+                <button id="themeToggle" class="theme-toggle">◐ Theme</button>
+            </div>
+        </div>
     </header>
     
     <main>
+        <div class="filters" id="filters" style="display: none;">
+            <div>Active filters:</div>
+            <div class="active-filters" id="activeFilters"></div>
+        </div>
+        
         <form class="post-form" id="postForm">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -247,6 +487,12 @@
             <div class="form-group">
                 <label for="username">Username (optional)</label>
                 <input type="text" id="username" name="username" placeholder="Anonymous" maxlength="50">
+            </div>
+            
+            <div class="form-group">
+                <label for="tags">Tags (optional)</label>
+                <input type="text" id="tags" name="tags" placeholder="tech, discussion, help" class="tags-input">
+                <small>Separate tags with commas</small>
             </div>
             
             <div class="form-group">
@@ -271,43 +517,109 @@ Code block
 ```"></textarea>
             </div>
             
+            <div class="form-group image-upload">
+                <label for="images">Images (optional, max 5MB each)</label>
+                <input type="file" id="images" accept="image/*" multiple>
+            </div>
+            
             <button type="submit" class="submit-btn" id="submitBtn">Post</button>
             <div class="error" id="error"></div>
         </form>
         
         <div class="loading" id="loading" style="display: none;">Loading posts...</div>
         <div class="posts-container" id="postsContainer"></div>
+        <div class="load-more" id="loadMore" style="display: none;">
+            <button id="loadMoreBtn">Load More Posts</button>
+        </div>
     </main>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
     <script>
         let posts = [];
         let apiBaseUrl = '';
+        let currentOffset = 0;
+        let hasMore = true;
+        let currentSearch = '';
+        let currentTag = '';
+        let refreshInterval;
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Set API URL to your Worker
             apiBaseUrl = 'https://board.thanos.workers.dev';
             loadPosts();
-            document.getElementById('postForm').addEventListener('submit', handleSubmit);
+            setupEventListeners();
+            setupTheme();
+            setupAutoRefresh();
         });
-
         
-        // Load all posts
-        async function loadPosts() {
+        function setupEventListeners() {
+            document.getElementById('postForm').addEventListener('submit', handleSubmit);
+            document.getElementById('searchBox').addEventListener('input', debounce(handleSearch, 300));
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.getElementById('loadMoreBtn').addEventListener('click', loadMorePosts);
+        }
+        
+        function setupTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        function setupAutoRefresh() {
+            refreshInterval = setInterval(async () => {
+                await loadPosts(true);
+            }, 30000); // Refresh every 30 seconds
+        }
+        
+        // Load posts with optional refresh mode
+        async function loadPosts(isRefresh = false) {
             if (!apiBaseUrl) return;
             
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('loading').textContent = 'Loading posts...';
+            if (!isRefresh) {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('loading').textContent = 'Loading posts...';
+            }
             
             try {
-                const response = await fetch(`${apiBaseUrl}/api/posts`);
+                const params = new URLSearchParams({
+                    offset: isRefresh ? '0' : currentOffset.toString(),
+                    limit: isRefresh ? posts.length.toString() || '50' : '50'
+                });
+                
+                if (currentSearch) params.append('search', currentSearch);
+                if (currentTag) params.append('tag', currentTag);
+                
+                const response = await fetch(`${apiBaseUrl}/api/posts?${params}`);
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
                 
-                posts = await response.json();
-                renderPosts();
+                const data = await response.json();
+                
+                if (isRefresh) {
+                    // Check for new posts
+                    const newPosts = data.posts.filter(post => 
+                        !posts.some(existing => existing.id === post.id)
+                    );
+                    
+                    if (newPosts.length > 0) {
+                        posts = data.posts;
+                        renderPosts();
+                    }
+                } else {
+                    posts = currentOffset === 0 ? data.posts : [...posts, ...data.posts];
+                    hasMore = data.hasMore;
+                    renderPosts();
+                    updateLoadMoreButton();
+                }
+                
                 document.getElementById('loading').style.display = 'none';
             } catch (error) {
                 console.error('Error loading posts:', error);
@@ -316,39 +628,284 @@ Code block
             }
         }
         
+        function loadMorePosts() {
+            currentOffset += 50;
+            loadPosts();
+        }
+        
+        function updateLoadMoreButton() {
+            const loadMoreDiv = document.getElementById('loadMore');
+            loadMoreDiv.style.display = hasMore && posts.length > 0 ? 'block' : 'none';
+        }
+        
+        function handleSearch(e) {
+            currentSearch = e.target.value;
+            currentOffset = 0;
+            posts = [];
+            loadPosts();
+            updateFilters();
+        }
+        
+        function filterByTag(tag) {
+            currentTag = tag;
+            currentOffset = 0;
+            posts = [];
+            loadPosts();
+            updateFilters();
+        }
+        
+        function clearFilters() {
+            currentSearch = '';
+            currentTag = '';
+            currentOffset = 0;
+            posts = [];
+            document.getElementById('searchBox').value = '';
+            loadPosts();
+            updateFilters();
+        }
+        
+        function updateFilters() {
+            const filtersDiv = document.getElementById('filters');
+            const activeFiltersDiv = document.getElementById('activeFilters');
+            
+            let hasFilters = false;
+            activeFiltersDiv.innerHTML = '';
+            
+            if (currentSearch) {
+                hasFilters = true;
+                const searchFilter = document.createElement('button');
+                searchFilter.className = 'filter-tag';
+                searchFilter.textContent = `Search: "${currentSearch}" ✕`;
+                searchFilter.onclick = () => {
+                    currentSearch = '';
+                    document.getElementById('searchBox').value = '';
+                    currentOffset = 0;
+                    posts = [];
+                    loadPosts();
+                    updateFilters();
+                };
+                activeFiltersDiv.appendChild(searchFilter);
+            }
+            
+            if (currentTag) {
+                hasFilters = true;
+                const tagFilter = document.createElement('button');
+                tagFilter.className = 'filter-tag';
+                tagFilter.textContent = `Tag: ${currentTag} ✕`;
+                tagFilter.onclick = () => {
+                    currentTag = '';
+                    currentOffset = 0;
+                    posts = [];
+                    loadPosts();
+                    updateFilters();
+                };
+                activeFiltersDiv.appendChild(tagFilter);
+            }
+            
+            filtersDiv.style.display = hasFilters ? 'block' : 'none';
+        }
+        
         // Render posts in staggered columns
         function renderPosts() {
             const container = document.getElementById('postsContainer');
-            container.innerHTML = '';
             
-            if (posts.length === 0) {
-                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">No posts yet. Be the first to post!</div>';
+            if (currentOffset === 0) {
+                container.innerHTML = '';
+            }
+            
+            if (posts.length === 0 && currentOffset === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--secondary-text);">No posts found. Be the first to post!</div>';
                 return;
             }
             
-            posts.forEach(post => {
-                const postElement = createPostElement(post);
+            const startIndex = Math.max(0, container.children.length);
+            
+            for (let i = startIndex; i < posts.length; i++) {
+                const postElement = createPostElement(posts[i]);
                 container.appendChild(postElement);
-            });
+            }
         }
         
         // Create individual post element
         function createPostElement(post) {
             const div = document.createElement('div');
             div.className = 'post';
+            div.setAttribute('data-post-id', post.id);
             
             const date = new Date(post.timestamp).toLocaleString();
             const contentHtml = marked.parse(post.content);
+            
+            let tagsHtml = '';
+            if (post.tags && post.tags.length > 0) {
+                tagsHtml = '<div class="post-tags">' + 
+                    post.tags.map(tag => `<span class="tag" onclick="filterByTag('${escapeHtml(tag)}')">${escapeHtml(tag)}</span>`).join('') +
+                    '</div>';
+            }
+            
+            let imagesHtml = '';
+            if (post.images && post.images.length > 0) {
+                imagesHtml = '<div class="post-images">' + 
+                    post.images.map(imageUrl => `<img src="${escapeHtml(imageUrl)}" alt="Post image">`).join('') +
+                    '</div>';
+            }
+            
+            let repliesHtml = '';
+            if (post.replies && post.replies.length > 0) {
+                repliesHtml = '<div class="replies">' + 
+                    post.replies.map(reply => `
+                        <div class="reply">
+                            <div class="reply-header">
+                                <div><strong>${escapeHtml(reply.username)}</strong> • ${new Date(reply.timestamp).toLocaleString()}</div>
+                                <div class="reply-actions">
+                                    <button class="action-btn" onclick="reactToReply('${post.id}', '${reply.id}', 'like')">
+                                        ▲ ${reply.likes || 0}
+                                    </button>
+                                    <button class="action-btn" onclick="reactToReply('${post.id}', '${reply.id}', 'dislike')">
+                                        ▼ ${reply.dislikes || 0}
+                                    </button>
+                                </div>
+                            </div>
+                            <div>${marked.parse(reply.content)}</div>
+                        </div>
+                    `).join('') +
+                    '</div>';
+            }
             
             div.innerHTML = `
                 <div class="post-header">
                     <div class="post-title">${escapeHtml(post.title)}</div>
                     <div class="post-meta">by ${escapeHtml(post.username)} • ${date}</div>
+                    ${tagsHtml}
                 </div>
                 <div class="post-content">${contentHtml}</div>
+                ${imagesHtml}
+                <div class="post-actions">
+                    <button class="action-btn" onclick="reactToPost('${post.id}', 'like')">
+                        ▲ ${post.likes || 0}
+                    </button>
+                    <button class="action-btn" onclick="reactToPost('${post.id}', 'dislike')">
+                        ▼ ${post.dislikes || 0}
+                    </button>
+                    <button class="action-btn" onclick="toggleReplyForm('${post.id}')">
+                        ↳ Reply (${post.replies ? post.replies.length : 0})
+                    </button>
+                </div>
+                <div class="reply-form" id="replyForm-${post.id}">
+                    <input type="text" placeholder="Your name (optional)" id="replyUsername-${post.id}" maxlength="50">
+                    <textarea class="reply-input" placeholder="Write your reply..." id="replyContent-${post.id}" required></textarea>
+                    <button class="submit-btn" onclick="submitReply('${post.id}')">Post Reply</button>
+                    <button class="action-btn" onclick="toggleReplyForm('${post.id}')">Cancel</button>
+                </div>
+                ${repliesHtml}
             `;
             
             return div;
+        }
+        
+        // React to post
+        async function reactToPost(postId, type) {
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/posts/${postId}/react`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ type })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to react to post');
+                }
+                
+                const data = await response.json();
+                
+                // Update the post in memory
+                const post = posts.find(p => p.id === postId);
+                if (post) {
+                    post.likes = data.likes;
+                    post.dislikes = data.dislikes;
+                    
+                    // Update the UI
+                    const postElement = document.querySelector(`[data-post-id="${postId}"]`);
+                    if (postElement) {
+                        const likeBtn = postElement.querySelector('.action-btn');
+                        const dislikeBtn = postElement.querySelectorAll('.action-btn')[1];
+                        likeBtn.innerHTML = `▲ ${data.likes}`;
+                        dislikeBtn.innerHTML = `▼ ${data.dislikes}`;
+                    }
+                }
+            } catch (error) {
+                console.error('Error reacting to post:', error);
+            }
+        }
+        
+        // Toggle reply form
+        function toggleReplyForm(postId) {
+            const replyForm = document.getElementById(`replyForm-${postId}`);
+            replyForm.classList.toggle('active');
+            
+            if (replyForm.classList.contains('active')) {
+                const textarea = document.getElementById(`replyContent-${postId}`);
+                textarea.focus();
+            }
+        }
+        
+        // Submit reply
+        async function submitReply(postId) {
+            const usernameInput = document.getElementById(`replyUsername-${postId}`);
+            const contentInput = document.getElementById(`replyContent-${postId}`);
+            
+            const username = usernameInput.value.trim();
+            const content = contentInput.value.trim();
+            
+            if (!content) {
+                alert('Reply content is required');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/posts/${postId}/reply`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: username || 'Anonymous',
+                        content
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to post reply');
+                }
+                
+                const reply = await response.json();
+                
+                // Update the post in memory
+                const post = posts.find(p => p.id === postId);
+                if (post) {
+                    if (!post.replies) {
+                        post.replies = [];
+                    }
+                    post.replies.push(reply);
+                    
+                    // Re-render the post
+                    const postElement = document.querySelector(`[data-post-id="${postId}"]`);
+                    if (postElement) {
+                        const newPostElement = createPostElement(post);
+                        postElement.replaceWith(newPostElement);
+                    }
+                }
+                
+                // Clear form
+                usernameInput.value = '';
+                contentInput.value = '';
+                toggleReplyForm(postId);
+                
+            } catch (error) {
+                console.error('Error submitting reply:', error);
+                alert('Failed to post reply');
+            }
         }
         
         // Handle form submission
@@ -365,6 +922,8 @@ Code block
             const title = document.getElementById('title').value.trim();
             const username = document.getElementById('username').value.trim();
             const content = document.getElementById('content').value.trim();
+            const tagsInput = document.getElementById('tags').value.trim();
+            const imageFiles = document.getElementById('images').files;
             
             if (!title || !content) {
                 errorDiv.textContent = 'Title and content are required';
@@ -378,11 +937,33 @@ Code block
                 return;
             }
             
+            // Process tags
+            const tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+            
             // Disable submit button
             submitBtn.disabled = true;
             submitBtn.textContent = 'Posting...';
             
             try {
+                // Upload images first
+                const imageUrls = [];
+                for (let i = 0; i < imageFiles.length; i++) {
+                    const file = imageFiles[i];
+                    const formData = new FormData();
+                    formData.append('image', file);
+                    
+                    const uploadResponse = await fetch(`${apiBaseUrl}/api/images`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (uploadResponse.ok) {
+                        const imageData = await uploadResponse.json();
+                        imageUrls.push(imageData.url);
+                    }
+                }
+                
+                // Create post
                 const response = await fetch(`${apiBaseUrl}/api/posts`, {
                     method: 'POST',
                     headers: {
@@ -391,7 +972,9 @@ Code block
                     body: JSON.stringify({
                         title,
                         username: username || 'Anonymous',
-                        content
+                        content,
+                        tags,
+                        images: imageUrls
                     })
                 });
                 
@@ -421,13 +1004,37 @@ Code block
             }
         }
         
-        // Utility function to escape HTML
+        // Utility functions
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
-
+        
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func.apply(this, args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+        });
+        
+        // Expose functions to global scope for onclick handlers
+        window.reactToPost = reactToPost;
+        window.toggleReplyForm = toggleReplyForm;
+        window.submitReply = submitReply;
+        window.filterByTag = filterByTag;
     </script>
 </body>
 </html>
