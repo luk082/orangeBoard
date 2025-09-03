@@ -36,12 +36,14 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            padding: 0;
+            margin: 0;
         }
         
         .header {
             border-bottom: 2px solid var(--border-color);
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 24px;
+            margin-bottom: 32px;
             position: sticky;
             top: 0;
             background: var(--bg-color);
@@ -55,69 +57,73 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 16px;
         }
         
         .header h1 {
             font-size: 2rem;
             font-weight: 700;
             color: #ff2000;
+            margin: 0;
         }
         
         .header-controls {
             display: flex;
-            gap: 15px;
+            gap: 16px;
             align-items: center;
             flex-wrap: wrap;
         }
         
         .search-box {
-            padding: 8px 12px;
+            padding: 10px 14px;
             border: 2px solid var(--border-color);
             background: var(--bg-color);
             color: var(--text-color);
             font-family: inherit;
             min-width: 200px;
+            margin: 0;
         }
         
-        .theme-toggle {
+        .theme-toggle, .admin-btn {
             background: var(--button-bg);
             color: var(--button-text);
             border: 2px solid var(--border-color);
-            padding: 8px 12px;
+            padding: 10px 14px;
             cursor: pointer;
             font-family: inherit;
+            margin: 0;
         }
         
-        .theme-toggle:hover {
+        .theme-toggle:hover, .admin-btn:hover {
             background: var(--hover-bg);
         }
         
         .post-form {
             max-width: 600px;
             margin: 0 auto 40px;
-            padding: 20px;
+            padding: 24px;
             border: 2px solid var(--border-color);
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 600;
         }
         
         input[type="text"], textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid var(--border-color);
             background: var(--bg-color);
             color: var(--text-color);
             font-family: inherit;
             font-size: 14px;
+            margin: 0;
         }
         
         input[type="text"]:focus, textarea:focus {
@@ -135,14 +141,26 @@
             color: var(--secondary-text);
         }
         
+        .character-count {
+            font-size: 12px;
+            color: var(--secondary-text);
+            text-align: right;
+            margin-top: 4px;
+        }
+        
+        .character-count.over-limit {
+            color: #d00;
+        }
+        
         .submit-btn {
             background: var(--button-bg);
             color: var(--button-text);
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: 2px solid var(--border-color);
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
+            margin: 0;
         }
         
         .submit-btn:hover:not(:disabled) {
@@ -155,58 +173,59 @@
         }
         
         .image-upload {
-            margin-top: 10px;
+            margin-top: 12px;
         }
         
         .image-upload input[type="file"] {
             border: none;
-            padding: 5px 0;
+            padding: 8px 0;
         }
         
         .posts-container {
-            padding: 0 20px;
+            padding: 0 24px;
             columns: 300px;
-            column-gap: 20px;
+            column-gap: 24px;
         }
         
         .post {
             break-inside: avoid;
-            margin-bottom: 20px;
-            padding: 20px;
+            margin-bottom: 24px;
+            padding: 24px;
             border: 2px solid var(--border-color);
             background: var(--bg-color);
         }
         
         .post-header {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
             border-bottom: 1px solid var(--border-color);
         }
         
         .post-title {
             font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         
         .post-meta {
             font-size: 0.9rem;
             color: var(--secondary-text);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         
         .post-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 8px;
         }
         
         .tag {
             background: var(--hover-bg);
             border: 1px solid var(--border-color);
-            padding: 2px 6px;
+            padding: 4px 8px;
             font-size: 0.8rem;
             cursor: pointer;
+            margin: 0;
         }
         
         .tag:hover {
@@ -216,44 +235,44 @@
         
         .post-content {
             word-wrap: break-word;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
         
         .post-content h1 {
             font-size: 1.5rem;
-            margin: 15px 0 10px 0;
+            margin: 16px 0 12px 0;
             font-weight: 700;
         }
         
         .post-content h2 {
             font-size: 1.3rem;
-            margin: 15px 0 10px 0;
+            margin: 16px 0 12px 0;
             font-weight: 700;
         }
         
         .post-content h3 {
             font-size: 1.1rem;
-            margin: 15px 0 10px 0;
+            margin: 16px 0 12px 0;
             font-weight: 700;
         }
         
         .post-content h4, .post-content h5, .post-content h6 {
             font-size: 1rem;
-            margin: 15px 0 10px 0;
+            margin: 16px 0 12px 0;
             font-weight: 700;
         }
         
         .post-content p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .post-content ul, .post-content ol {
-            margin-left: 20px;
-            margin-bottom: 10px;
+            margin-left: 24px;
+            margin-bottom: 12px;
         }
         
         .post-content li {
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
         
         .post-content a {
@@ -275,7 +294,7 @@
         
         .post-content code {
             background: var(--hover-bg);
-            padding: 2px 4px;
+            padding: 3px 6px;
             border: 1px solid var(--border-color);
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
@@ -283,10 +302,10 @@
         
         .post-content pre {
             background: var(--hover-bg);
-            padding: 10px;
+            padding: 12px;
             border: 1px solid var(--border-color);
             overflow-x: auto;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .post-content pre code {
@@ -297,46 +316,47 @@
         
         .post-content blockquote {
             border-left: 4px solid var(--border-color);
-            padding-left: 15px;
-            margin: 10px 0;
+            padding-left: 16px;
+            margin: 12px 0;
             font-style: italic;
         }
         
         .post-content hr {
             border: none;
             border-top: 2px solid var(--border-color);
-            margin: 15px 0;
+            margin: 16px 0;
         }
         
         .post-images {
-            margin: 10px 0;
+            margin: 12px 0;
         }
         
         .post-images img {
             max-width: 100%;
             height: auto;
             border: 1px solid var(--border-color);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         
         .post-actions {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 16px;
             border-top: 1px solid var(--border-color);
-            padding-top: 10px;
+            padding-top: 12px;
         }
         
         .action-btn {
             background: none;
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 5px 10px;
+            padding: 8px 12px;
             cursor: pointer;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            margin: 0;
         }
         
         .action-btn:hover {
@@ -345,12 +365,12 @@
         
         .replies {
             border-top: 1px solid var(--border-color);
-            padding-top: 15px;
+            padding-top: 16px;
         }
         
         .reply {
-            margin-bottom: 10px;
-            padding: 10px;
+            margin-bottom: 12px;
+            padding: 12px;
             border-left: 3px solid var(--border-color);
             background: var(--hover-bg);
         }
@@ -358,7 +378,7 @@
         .reply-header {
             font-size: 0.8rem;
             color: var(--secondary-text);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -366,11 +386,11 @@
         
         .reply-actions {
             display: flex;
-            gap: 5px;
+            gap: 8px;
         }
         
         .reply-form {
-            margin-top: 10px;
+            margin-top: 12px;
             display: none;
         }
         
@@ -380,18 +400,18 @@
         
         .reply-input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid var(--border-color);
             background: var(--bg-color);
             color: var(--text-color);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             min-height: 60px;
         }
         
         .filters {
             max-width: 600px;
-            margin: 0 auto 20px;
-            padding: 15px;
+            margin: 0 auto 24px;
+            padding: 16px;
             border: 1px solid var(--border-color);
             background: var(--hover-bg);
         }
@@ -399,17 +419,18 @@
         .active-filters {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 12px;
+            margin-top: 12px;
         }
         
         .filter-tag {
             background: var(--button-bg);
             color: var(--button-text);
-            padding: 4px 8px;
+            padding: 6px 10px;
             font-size: 0.8rem;
             border: none;
             cursor: pointer;
+            margin: 0;
         }
         
         .loading {
@@ -420,30 +441,125 @@
         
         .error {
             color: #d00;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         
         .load-more {
             text-align: center;
-            margin: 20px 0;
+            margin: 24px 0;
         }
         
         .load-more button {
             background: var(--button-bg);
             color: var(--button-text);
             border: 2px solid var(--border-color);
-            padding: 10px 20px;
+            padding: 12px 24px;
             cursor: pointer;
             font-size: 14px;
+            margin: 0;
+        }
+        
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            z-index: 1000;
+        }
+        
+        .admin-panel.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .admin-content {
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            padding: 32px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .admin-close {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+            cursor: pointer;
+            margin: 0;
+        }
+        
+        .admin-login {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .admin-login input {
+            margin-bottom: 16px;
+            max-width: 300px;
+        }
+        
+        .admin-post {
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .admin-post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .admin-post-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .admin-post-actions button {
+            padding: 4px 8px;
+            font-size: 0.8rem;
+        }
+        
+        .edit-form {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .edit-form.active {
+            display: block;
+        }
+        
+        .edit-form input, .edit-form textarea {
+            margin-bottom: 12px;
         }
         
         @media (max-width: 768px) {
             .posts-container {
                 columns: 1;
+                padding: 0 16px;
             }
             
             .post-form {
-                margin: 0 20px 40px;
+                margin: 0 16px 40px;
             }
             
             .header-content {
@@ -459,6 +575,11 @@
                 min-width: 150px;
                 flex: 1;
             }
+            
+            .admin-content {
+                padding: 16px;
+                max-height: 90vh;
+            }
         }
     </style>
 </head>
@@ -469,6 +590,7 @@
             <div class="header-controls">
                 <input type="text" id="searchBox" class="search-box" placeholder="Search posts...">
                 <button id="themeToggle" class="theme-toggle">◐ Theme</button>
+                <button id="adminBtn" class="admin-btn">Admin</button>
             </div>
         </div>
     </header>
@@ -483,11 +605,13 @@
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" required maxlength="100">
+                <div class="character-count" id="titleCount">0/100</div>
             </div>
             
             <div class="form-group">
                 <label for="username">Username (optional)</label>
                 <input type="text" id="username" name="username" placeholder="Anonymous" maxlength="50">
+                <div class="character-count" id="usernameCount">0/50</div>
             </div>
             
             <div class="form-group">
@@ -516,6 +640,7 @@
 ```
 Code block
 ```"></textarea>
+                <div class="character-count" id="contentCount">0 words / 500 words</div>
             </div>
             
             <div class="form-group image-upload">
@@ -534,6 +659,27 @@ Code block
         </div>
     </main>
     
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2>Admin Panel</h2>
+                <button class="admin-close" id="adminClose">Close</button>
+            </div>
+            
+            <div class="admin-login" id="adminLogin">
+                <h3>Login</h3>
+                <input type="password" id="adminPassword" placeholder="Admin Password">
+                <br>
+                <button class="submit-btn" id="adminLoginBtn">Login</button>
+                <div class="error" id="adminError"></div>
+            </div>
+            
+            <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+                <div id="adminPosts"></div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
     <script>
         let posts = [];
@@ -543,6 +689,7 @@ Code block
         let currentSearch = '';
         let currentTag = '';
         let refreshInterval;
+        let adminToken = '';
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -552,6 +699,7 @@ Code block
             setupEventListeners();
             setupTheme();
             setupAutoRefresh();
+            setupCharacterCounts();
         });
         
         function setupEventListeners() {
@@ -559,6 +707,40 @@ Code block
             document.getElementById('searchBox').addEventListener('input', debounce(handleSearch, 300));
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             document.getElementById('loadMoreBtn').addEventListener('click', loadMorePosts);
+            document.getElementById('adminBtn').addEventListener('click', openAdminPanel);
+            document.getElementById('adminClose').addEventListener('click', closeAdminPanel);
+            document.getElementById('adminLoginBtn').addEventListener('click', adminLogin);
+        }
+        
+        function setupCharacterCounts() {
+            const titleInput = document.getElementById('title');
+            const usernameInput = document.getElementById('username');
+            const contentInput = document.getElementById('content');
+            
+            titleInput.addEventListener('input', function() {
+                updateCharacterCount('titleCount', this.value.length, 100);
+            });
+            
+            usernameInput.addEventListener('input', function() {
+                updateCharacterCount('usernameCount', this.value.length, 50);
+            });
+            
+            contentInput.addEventListener('input', function() {
+                const wordCount = this.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+                updateWordCount('contentCount', wordCount, 500);
+            });
+        }
+        
+        function updateCharacterCount(elementId, current, max) {
+            const element = document.getElementById(elementId);
+            element.textContent = `${current}/${max}`;
+            element.className = current > max ? 'character-count over-limit' : 'character-count';
+        }
+        
+        function updateWordCount(elementId, current, max) {
+            const element = document.getElementById(elementId);
+            element.textContent = `${current} words / ${max} words`;
+            element.className = current > max ? 'character-count over-limit' : 'character-count';
         }
         
         function setupTheme() {
@@ -577,6 +759,140 @@ Code block
             refreshInterval = setInterval(async () => {
                 await loadPosts(true);
             }, 30000); // Refresh every 30 seconds
+        }
+        
+        // Admin functions
+        function openAdminPanel() {
+            document.getElementById('adminPanel').classList.add('active');
+        }
+        
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').classList.remove('active');
+        }
+        
+        async function adminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('adminError');
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/admin/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    adminToken = data.token;
+                    document.getElementById('adminLogin').style.display = 'none';
+                    document.getElementById('adminDashboard').style.display = 'block';
+                    await loadAdminPosts();
+                } else {
+                    errorDiv.textContent = data.error;
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Login failed';
+            }
+        }
+        
+        async function loadAdminPosts() {
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/admin/posts`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                
+                const adminPosts = await response.json();
+                renderAdminPosts(adminPosts);
+            } catch (error) {
+                console.error('Error loading admin posts:', error);
+            }
+        }
+        
+        function renderAdminPosts(adminPosts) {
+            const container = document.getElementById('adminPosts');
+            container.innerHTML = '';
+            
+            adminPosts.forEach(post => {
+                const div = document.createElement('div');
+                div.className = 'admin-post';
+                div.innerHTML = `
+                    <div class="admin-post-header">
+                        <div>
+                            <strong>${escapeHtml(post.title)}</strong><br>
+                            <small>by ${escapeHtml(post.username)} • ${new Date(post.timestamp).toLocaleString()}</small>
+                        </div>
+                        <div class="admin-post-actions">
+                            <button class="action-btn" onclick="editPost('${post.id}')">Edit</button>
+                            <button class="action-btn" onclick="deletePost('${post.id}')">Delete</button>
+                        </div>
+                    </div>
+                    <div>${post.content.substring(0, 200)}${post.content.length > 200 ? '...' : ''}</div>
+                    <div class="edit-form" id="editForm-${post.id}">
+                        <input type="text" id="editTitle-${post.id}" value="${escapeHtml(post.title)}" placeholder="Title">
+                        <textarea id="editContent-${post.id}" placeholder="Content">${escapeHtml(post.content)}</textarea>
+                        <input type="text" id="editTags-${post.id}" value="${post.tags ? post.tags.join(', ') : ''}" placeholder="Tags (comma separated)">
+                        <button class="submit-btn" onclick="savePost('${post.id}')">Save</button>
+                        <button class="action-btn" onclick="cancelEdit('${post.id}')">Cancel</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        function editPost(postId) {
+            document.getElementById(`editForm-${postId}`).classList.add('active');
+        }
+        
+        function cancelEdit(postId) {
+            document.getElementById(`editForm-${postId}`).classList.remove('active');
+        }
+        
+        async function savePost(postId) {
+            const title = document.getElementById(`editTitle-${postId}`).value;
+            const content = document.getElementById(`editContent-${postId}`).value;
+            const tagsStr = document.getElementById(`editTags-${postId}`).value;
+            const tags = tagsStr ? tagsStr.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/admin/posts/${postId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${adminToken}`
+                    },
+                    body: JSON.stringify({ title, content, tags })
+                });
+                
+                if (response.ok) {
+                    await loadAdminPosts();
+                    await loadPosts(); // Refresh main posts
+                } else {
+                    alert('Failed to update post');
+                }
+            } catch (error) {
+                alert('Error updating post');
+            }
+        }
+        
+        async function deletePost(postId) {
+            if (!confirm('Are you sure you want to delete this post?')) return;
+            
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/admin/posts/${postId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                
+                if (response.ok) {
+                    await loadAdminPosts();
+                    await loadPosts(); // Refresh main posts
+                } else {
+                    alert('Failed to delete post');
+                }
+            } catch (error) {
+                alert('Error deleting post');
+            }
         }
         
         // Load posts with optional refresh mode
@@ -807,8 +1123,32 @@ Code block
             return div;
         }
         
-        // React to post
+        // Optimistic updates - React to post
         async function reactToPost(postId, type) {
+            // Find the post in memory
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            // Optimistic update
+            const originalLikes = post.likes;
+            const originalDislikes = post.dislikes;
+            
+            if (type === 'like') {
+                post.likes = (post.likes || 0) + 1;
+            } else {
+                post.dislikes = (post.dislikes || 0) + 1;
+            }
+            
+            // Update UI immediately
+            const postElement = document.querySelector(`[data-post-id="${postId}"]`);
+            if (postElement) {
+                const likeBtn = postElement.querySelector('.action-btn');
+                const dislikeBtn = postElement.querySelectorAll('.action-btn')[1];
+                likeBtn.innerHTML = `▲ ${post.likes}`;
+                dislikeBtn.innerHTML = `▼ ${post.dislikes}`;
+            }
+            
+            // Send to backend
             try {
                 const response = await fetch(`${apiBaseUrl}/api/posts/${postId}/react`, {
                     method: 'POST',
@@ -824,23 +1164,94 @@ Code block
                 
                 const data = await response.json();
                 
-                // Update the post in memory
-                const post = posts.find(p => p.id === postId);
-                if (post) {
-                    post.likes = data.likes;
-                    post.dislikes = data.dislikes;
-                    
-                    // Update the UI
-                    const postElement = document.querySelector(`[data-post-id="${postId}"]`);
-                    if (postElement) {
-                        const likeBtn = postElement.querySelector('.action-btn');
-                        const dislikeBtn = postElement.querySelectorAll('.action-btn')[1];
-                        likeBtn.innerHTML = `▲ ${data.likes}`;
-                        dislikeBtn.innerHTML = `▼ ${data.dislikes}`;
-                    }
+                // Update with server response
+                post.likes = data.likes;
+                post.dislikes = data.dislikes;
+                
+                if (postElement) {
+                    const likeBtn = postElement.querySelector('.action-btn');
+                    const dislikeBtn = postElement.querySelectorAll('.action-btn')[1];
+                    likeBtn.innerHTML = `▲ ${data.likes}`;
+                    dislikeBtn.innerHTML = `▼ ${data.dislikes}`;
                 }
             } catch (error) {
+                // Revert optimistic update on error
+                post.likes = originalLikes;
+                post.dislikes = originalDislikes;
+                
+                if (postElement) {
+                    const likeBtn = postElement.querySelector('.action-btn');
+                    const dislikeBtn = postElement.querySelectorAll('.action-btn')[1];
+                    likeBtn.innerHTML = `▲ ${originalLikes}`;
+                    dislikeBtn.innerHTML = `▼ ${originalDislikes}`;
+                }
+                
                 console.error('Error reacting to post:', error);
+            }
+        }
+        
+        // React to reply with optimistic updates
+        async function reactToReply(postId, replyId, type) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            const reply = post.replies.find(r => r.id === replyId);
+            if (!reply) return;
+            
+            // Optimistic update
+            const originalLikes = reply.likes;
+            const originalDislikes = reply.dislikes;
+            
+            if (type === 'like') {
+                reply.likes = (reply.likes || 0) + 1;
+            } else {
+                reply.dislikes = (reply.dislikes || 0) + 1;
+            }
+            
+            // Update UI immediately
+            const postElement = document.querySelector(`[data-post-id="${postId}"]`);
+            if (postElement) {
+                const newPostElement = createPostElement(post);
+                postElement.replaceWith(newPostElement);
+            }
+            
+            // Send to backend
+            try {
+                const response = await fetch(`${apiBaseUrl}/api/posts/${postId}/replies/${replyId}/react`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ type })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to react to reply');
+                }
+                
+                const data = await response.json();
+                
+                // Update with server response
+                reply.likes = data.likes;
+                reply.dislikes = data.dislikes;
+                
+                const updatedPostElement = document.querySelector(`[data-post-id="${postId}"]`);
+                if (updatedPostElement) {
+                    const finalPostElement = createPostElement(post);
+                    updatedPostElement.replaceWith(finalPostElement);
+                }
+            } catch (error) {
+                // Revert optimistic update on error
+                reply.likes = originalLikes;
+                reply.dislikes = originalDislikes;
+                
+                const revertPostElement = document.querySelector(`[data-post-id="${postId}"]`);
+                if (revertPostElement) {
+                    const revertedPostElement = createPostElement(post);
+                    revertPostElement.replaceWith(revertedPostElement);
+                }
+                
+                console.error('Error reacting to reply:', error);
             }
         }
         
@@ -855,7 +1266,7 @@ Code block
             }
         }
         
-        // Submit reply
+        // Submit reply with optimistic updates
         async function submitReply(postId) {
             const usernameInput = document.getElementById(`replyUsername-${postId}`);
             const contentInput = document.getElementById(`replyContent-${postId}`);
@@ -868,6 +1279,39 @@ Code block
                 return;
             }
             
+            // Find the post
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            
+            // Create optimistic reply
+            const optimisticReply = {
+                id: `temp-${Date.now()}`,
+                username: username || 'Anonymous',
+                content: content,
+                timestamp: new Date().toISOString(),
+                likes: 0,
+                dislikes: 0
+            };
+            
+            // Add to post optimistically
+            if (!post.replies) {
+                post.replies = [];
+            }
+            post.replies.push(optimisticReply);
+            
+            // Update UI immediately
+            const postElement = document.querySelector(`[data-post-id="${postId}"]`);
+            if (postElement) {
+                const newPostElement = createPostElement(post);
+                postElement.replaceWith(newPostElement);
+            }
+            
+            // Clear form
+            usernameInput.value = '';
+            contentInput.value = '';
+            toggleReplyForm(postId);
+            
+            // Send to backend
             try {
                 const response = await fetch(`${apiBaseUrl}/api/posts/${postId}/reply`, {
                     method: 'POST',
@@ -884,36 +1328,41 @@ Code block
                     throw new Error('Failed to post reply');
                 }
                 
-                const reply = await response.json();
+                const serverReply = await response.json();
                 
-                // Update the post in memory
-                const post = posts.find(p => p.id === postId);
-                if (post) {
-                    if (!post.replies) {
-                        post.replies = [];
-                    }
-                    post.replies.push(reply);
-                    
-                    // Re-render the post
-                    const postElement = document.querySelector(`[data-post-id="${postId}"]`);
-                    if (postElement) {
-                        const newPostElement = createPostElement(post);
-                        postElement.replaceWith(newPostElement);
-                    }
+                // Replace optimistic reply with server reply
+                const replyIndex = post.replies.findIndex(r => r.id === optimisticReply.id);
+                if (replyIndex !== -1) {
+                    post.replies[replyIndex] = serverReply;
                 }
                 
-                // Clear form
-                usernameInput.value = '';
-                contentInput.value = '';
-                toggleReplyForm(postId);
+                // Update UI with server data
+                const updatedPostElement = document.querySelector(`[data-post-id="${postId}"]`);
+                if (updatedPostElement) {
+                    const finalPostElement = createPostElement(post);
+                    updatedPostElement.replaceWith(finalPostElement);
+                }
                 
             } catch (error) {
+                // Remove optimistic reply on error
+                const replyIndex = post.replies.findIndex(r => r.id === optimisticReply.id);
+                if (replyIndex !== -1) {
+                    post.replies.splice(replyIndex, 1);
+                }
+                
+                // Revert UI
+                const errorPostElement = document.querySelector(`[data-post-id="${postId}"]`);
+                if (errorPostElement) {
+                    const revertedPostElement = createPostElement(post);
+                    errorPostElement.replaceWith(revertedPostElement);
+                }
+                
                 console.error('Error submitting reply:', error);
                 alert('Failed to post reply');
             }
         }
         
-        // Handle form submission
+        // Handle form submission with optimistic updates
         async function handleSubmit(e) {
             e.preventDefault();
             
@@ -936,7 +1385,7 @@ Code block
             }
             
             // Check word count
-            const wordCount = content.split(/\s+/).length;
+            const wordCount = content.split(/\s+/).filter(word => word.length > 0).length;
             if (wordCount > 500) {
                 errorDiv.textContent = `Content is ${wordCount} words. Maximum is 500 words.`;
                 return;
@@ -948,6 +1397,33 @@ Code block
             // Disable submit button
             submitBtn.disabled = true;
             submitBtn.textContent = 'Posting...';
+            
+            // Create optimistic post
+            const optimisticPost = {
+                id: `temp-${Date.now()}`,
+                title,
+                username: username || 'Anonymous',
+                content,
+                tags,
+                timestamp: new Date().toISOString(),
+                likes: 0,
+                dislikes: 0,
+                replies: [],
+                images: []
+            };
+            
+            // Add optimistic post to the beginning
+            posts.unshift(optimisticPost);
+            renderPosts();
+            
+            // Reset form
+            document.getElementById('postForm').reset();
+            updateCharacterCount('titleCount', 0, 100);
+            updateCharacterCount('usernameCount', 0, 50);
+            updateWordCount('contentCount', 0, 500);
+            
+            // Scroll to top to see new post
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
             try {
                 // Upload images first
@@ -988,19 +1464,23 @@ Code block
                     throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
                 }
                 
-                const newPost = await response.json();
+                const serverPost = await response.json();
                 
-                // Add new post to the beginning of the array
-                posts.unshift(newPost);
-                renderPosts();
-                
-                // Reset form
-                document.getElementById('postForm').reset();
-                
-                // Scroll to top to see new post
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Replace optimistic post with server post
+                const postIndex = posts.findIndex(p => p.id === optimisticPost.id);
+                if (postIndex !== -1) {
+                    posts[postIndex] = serverPost;
+                    renderPosts();
+                }
                 
             } catch (error) {
+                // Remove optimistic post on error
+                const postIndex = posts.findIndex(p => p.id === optimisticPost.id);
+                if (postIndex !== -1) {
+                    posts.splice(postIndex, 1);
+                    renderPosts();
+                }
+                
                 console.error('Error creating post:', error);
                 errorDiv.textContent = `Error: ${error.message}`;
             } finally {
@@ -1037,9 +1517,14 @@ Code block
         
         // Expose functions to global scope for onclick handlers
         window.reactToPost = reactToPost;
+        window.reactToReply = reactToReply;
         window.toggleReplyForm = toggleReplyForm;
         window.submitReply = submitReply;
         window.filterByTag = filterByTag;
+        window.editPost = editPost;
+        window.cancelEdit = cancelEdit;
+        window.savePost = savePost;
+        window.deletePost = deletePost;
     </script>
 </body>
 </html>
